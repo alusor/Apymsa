@@ -3,6 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 public class SceneController : MonoBehaviour {
 
+    string[] texts = new string[] 
+    { 
+       " Voy a correr en Tecnofuel Racing, ¡Descárgalo y corre tu también!",
+       "Inicio la carrera en Tecnofuel Racing, ¡Descárgalo y mejora mis tiempos!",
+       " Tecnofuel Racing está genial, ¡Descárgalo y arranca!",
+       "Tecnofuel Racing, horas y hora de arrancones, te lo recomiendo"     
+    };
+
     //public Image loadingScreen;
     public void changeScene(string nameScene) {
 		
@@ -38,6 +46,8 @@ public class SceneController : MonoBehaviour {
 
     private void FacebookShare()
     {
+        string ShareMessage = texts[Random.Range(0, texts.Length)];
+
         FB.Feed(
             link: "https://www.google.com/",
             linkName: "Tecn­o­R­a­cing",
@@ -55,10 +65,12 @@ public class SceneController : MonoBehaviour {
 
     private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
     private const string TWEET_LANGUAGE = "es"; 
-    public void twitter() { 
+    public void twitter() {
+
+        string ShareMessage = texts[Random.Range(0, texts.Length)];
         
         Application.OpenURL(TWITTER_ADDRESS +
-                "?text=" + WWW.EscapeURL("Prueba TecnoRacing") +
+                "?text=" + WWW.EscapeURL(ShareMessage) +
                 "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
     }
 }
