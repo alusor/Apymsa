@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour {
     public void carComponents() { }
     
 
-    public void FacebookShare()
+    /*public void FacebookShare()
     { 
         string ShareMessage = texts[Random.Range(0, texts.Length)];
 
@@ -51,8 +51,30 @@ public class SceneController : MonoBehaviour {
             reference: "",
             properties: null
             //callback: null
-            );*/
-    }
+            );
+    }*/
+
+
+	private const string FACEBOOK_APP_ID = "559107320883310";
+	private const string FACEBOOK_URL = "http://www.facebook.com/dialog/feed";
+	
+	void FacebookShare ()
+	{
+		string linkParameter, nameParameter, captionParameter,descriptionParameter, pictureParameter, redirectParameter;
+		linkParameter = "http://tecnofuel.com";
+		nameParameter = "Tecnofuel Racing!";
+		captionParameter = texts[Random.Range(0, texts.Length)];
+		descriptionParameter = texts[Random.Range(0, texts.Length)];
+		pictureParameter = "http://tecnofuel.com/upload/1437242399.jpg";
+		redirectParameter =  "https://facebook.com";
+		Application.OpenURL (FACEBOOK_URL + "?app_id=" + FACEBOOK_APP_ID +
+		                     "&link=" + WWW.EscapeURL(linkParameter) +
+		                     "&name=" + WWW.EscapeURL(nameParameter) +
+		                     "&caption=" + WWW.EscapeURL(captionParameter) + 
+		                     "&description=" + WWW.EscapeURL(descriptionParameter) + 
+		                     "&picture=" + WWW.EscapeURL(pictureParameter) + 
+		                     "&redirect_uri=" + WWW.EscapeURL(redirectParameter));
+	}
 
     private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
     private const string TWEET_LANGUAGE = "es"; 
