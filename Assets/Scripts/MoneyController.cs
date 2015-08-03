@@ -16,5 +16,6 @@ public class MoneyController : MonoBehaviour {
 
         Dinero = PlayerPrefs.GetInt("Money");
         TextoDinero.text = "$ " + Dinero.ToString();
+		Debug.Log (Dinero);
 	}
 }

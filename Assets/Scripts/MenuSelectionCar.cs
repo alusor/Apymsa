@@ -191,40 +191,54 @@ public class MenuSelectionCar : MonoBehaviour {
         }
         if (a == 2) {
             string test = actualCar.name.Split('(')[0];
-            switch (test)
-            {
-                case "Dodge":
-                    PlayerPrefs.SetInt("HasDodge",1);
-                    unlocked = PlayerPrefs.GetInt("HasDodge");
-                    break;
-                case "Jetta":
-                    PlayerPrefs.SetInt("HasJetta", 1);
-                    unlocked = PlayerPrefs.GetInt("HasJetta");
-                    break;
-                case "Honda":
-                    PlayerPrefs.SetInt("HasHonda", 1);
-                    unlocked = PlayerPrefs.GetInt("HasHonda");
-                    break;
-                case "Nissan":
-                    PlayerPrefs.SetInt("HasNissan", 1);
-                    unlocked = PlayerPrefs.GetInt("HasNissan");
-                    break;
-                case "Camaro":
-                    PlayerPrefs.SetInt("HasCamaro", 1);
-                    unlocked = PlayerPrefs.GetInt("HasCamaro");
-                    break;
-                case "Mustang":
-                    PlayerPrefs.SetInt("HasMustang", 1);
-                    unlocked = PlayerPrefs.GetInt("HasMustang");
-                    break;
-                default:
-                    break;
-            }
-            buy.SetBool("enter", false);
-            updaData();
+			if(costo<PlayerPrefs.GetInt("Money")){
+				PlayerPrefs.SetInt("Money",PlayerPrefs.GetInt("Money")-costo);
+				switch (test)
+				{
+				case "Dodge":
+					PlayerPrefs.SetInt("HasDodge",1);
+					unlocked = PlayerPrefs.GetInt("HasDodge");
+					break;
+				case "Jetta":
+					PlayerPrefs.SetInt("HasJetta", 1);
+					unlocked = PlayerPrefs.GetInt("HasJetta");
+					break;
+				case "Honda":
+					PlayerPrefs.SetInt("HasHonda", 1);
+					unlocked = PlayerPrefs.GetInt("HasHonda");
+					break;
+				case "Nissan":
+					PlayerPrefs.SetInt("HasNissan", 1);
+					unlocked = PlayerPrefs.GetInt("HasNissan");
+					break;
+				case "Camaro":
+					PlayerPrefs.SetInt("HasCamaro", 1);
+					unlocked = PlayerPrefs.GetInt("HasCamaro");
+					break;
+				case "Mustang":
+					PlayerPrefs.SetInt("HasMustang", 1);
+					unlocked = PlayerPrefs.GetInt("HasMustang");
+					break;
+				default:
+					break;
+				}
+				buy.SetBool("enter", false);
+				updaData();
+			}
+			else{
+				buytext.text = "No tienes suficiente dinero para comprarlo.";
+				StartCoroutine(close());
+			}
+            
+            
         
         }
     }
+	IEnumerator close(){
+		yield return new WaitForSeconds (2);
+		buy.SetBool("enter", false);
+		updaData();
+	}
     
 
 }

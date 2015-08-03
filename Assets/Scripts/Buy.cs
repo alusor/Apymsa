@@ -21,7 +21,7 @@ public class Buy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Prueba Dinero
-        PlayerPrefs.SetInt("Money", 1000);
+        //PlayerPrefs.SetInt("Money", 1000);
 
         Texto = GameObject.Find("TextMensaje").GetComponent<Text>();
         Marco = GameObject.Find("HolderMensaje").GetComponent<Image>();
