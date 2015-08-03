@@ -12,7 +12,7 @@ public class GameInit : MonoBehaviour {
             PlayerPrefs.SetString("SelectionCar", "Jetta");
             PlayerPrefs.SetString("Name", "null");
             PlayerPrefs.SetString("email", "null");
-            PlayerPrefs.SetInt("maxScore", 0);
+            PlayerPrefs.SetFloat("maxScore", 0);
             PlayerPrefs.SetInt("Money",0);
             PlayerPrefs.SetInt("racesPlayed",0);
             PlayerPrefs.SetInt("racesWin",0);

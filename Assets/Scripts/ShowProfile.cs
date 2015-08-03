@@ -8,7 +8,7 @@ public class ShowProfile : MonoBehaviour {
 	void Start () {
         lista[0].text = "Nick: " + PlayerPrefs.GetString("Name");
         lista[1].text = "Email: "+PlayerPrefs.GetString("email");
-        lista[2].text = "Max. Puntación: "+PlayerPrefs.GetInt("maxScore").ToString();
+        lista[2].text = "Max. Puntación: "+PlayerPrefs.GetFloat("maxScore").ToString();
         lista[3].text = "Dinero: "+PlayerPrefs.GetInt("Money").ToString();
         lista[4].text = "Carreras jugadas: "+PlayerPrefs.GetInt("racesPlayed").ToString();
         lista[5].text = "Carreras ganadas: "+PlayerPrefs.GetInt("racesWin").ToString();

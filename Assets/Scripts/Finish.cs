@@ -7,10 +7,11 @@ public class Finish : MonoBehaviour {
     public static int FinishRace;
     int Dinero;
 	float score;
+	public string url;
 
 	// Use this for initialization
 	void Start () {
-	
+		GameObject.Find ("scoreboard").GetComponent<Transform>().gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -19,7 +20,7 @@ public class Finish : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-
+		PlayerPrefs.SetInt ("racesPlayed", PlayerPrefs.GetInt ("racesPlayed") + 1);
         FinishRace = 1;
         GameObject.Find("Blur").GetComponent<Image>().enabled = true;
         GameObject.Find("FinishBox").GetComponent<Image>().enabled = true;
@@ -29,6 +30,7 @@ public class Finish : MonoBehaviour {
         GameObject.Find("TextEarnMoney").GetComponent<Text>().enabled = true;
         GameObject.Find("fb").GetComponent<Image>().enabled = true;
         GameObject.Find("tw").GetComponent<Image>().enabled = true;
+		GameObject.Find ("scoreboard").GetComponent<Transform> ().gameObject.SetActive (true);
 
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 		string tim = Timer.Tiempo.ToString ("F2");
@@ -47,7 +49,7 @@ public class Finish : MonoBehaviour {
 			score = (20 * (100-ti));
         }
         if (FinishEnemy.EnemyWin == 0)
-        {
+		{	PlayerPrefs.SetInt ("racesWin", PlayerPrefs.GetInt ("racesWin") + 1);
 			int wi = (100 * (70-(int)ti))/10;
             Debug.Log("Player Win");
             GameObject.Find("TextWin").GetComponent<Text>().text = "¡Ganaste!";
@@ -59,9 +61,14 @@ public class Finish : MonoBehaviour {
             }
             GameObject.Find("TextEarnMoney").GetComponent<Text>().text = "¡Obtuviste $"+wi+"!";
             PlayerPrefs.SetInt("Money", Dinero + wi);
-			score = (100 * (100-ti));
+			score = (ti*100 * (100-ti));
 
         }
+		int a = PlayerPrefs.GetInt ("maxScore");
+		if (a < score) {
+			PlayerPrefs.SetFloat("maxScore",score);
+			StartCoroutine(updateData());
+		}
 		Debug.Log (score);
            
     }
@@ -91,7 +98,11 @@ public class Finish : MonoBehaviour {
     }
 	private const string FACEBOOK_APP_ID = "559107320883310";
 	private const string FACEBOOK_URL = "http://www.facebook.com/dialog/feed";
-	
+
+	public void scoretable(){
+		Application.OpenURL ("http://tecnofuel/game/scoreboard.php");
+	}
+
 	public void FacebookShare ()
 	{
 		string linkParameter, nameParameter, captionParameter,descriptionParameter, pictureParameter, redirectParameter;
@@ -140,4 +151,10 @@ public class Finish : MonoBehaviour {
                 "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
         }
     }
+	IEnumerator updateData(){
+
+		WWW conection = new WWW (url+"updateData.php?email=" + PlayerPrefs.GetString("email").ToString() + "&score=" + score.ToString());
+		yield return conection;
+
+	}
 }
