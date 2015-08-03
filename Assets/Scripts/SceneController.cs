@@ -33,22 +33,13 @@ public class SceneController : MonoBehaviour {
     public void SetCar() { }
     public void initGame() { }
     public void carComponents() { }
-    public void facebook() {
-        if (FB.IsLoggedIn)
-        {
-            FacebookShare();
-        }
-        else
-        {
-            FB.Login("email,publish_actions");
-        }
-    }
+    
 
-    private void FacebookShare()
-    {
+    public void FacebookShare()
+    { 
         string ShareMessage = texts[Random.Range(0, texts.Length)];
 
-        FB.Feed(
+        /*FB.Feed(
             link: "https://www.google.com/",
             linkName: "Tecn­o­R­a­cing",
             linkCaption: "Correo",
@@ -60,7 +51,7 @@ public class SceneController : MonoBehaviour {
             reference: "",
             properties: null
             //callback: null
-            );
+            );*/
     }
 
     private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
