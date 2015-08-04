@@ -5,7 +5,7 @@ public class GameInit : MonoBehaviour {
 
 
     void Awake() {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         if (!PlayerPrefs.HasKey("firstPlay"))
         {
             PlayerPrefs.SetInt("firstPlay", 1);

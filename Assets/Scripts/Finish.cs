@@ -8,10 +8,11 @@ public class Finish : MonoBehaviour {
     int Dinero;
 	float score;
 	public string url;
+	public GameObject de;
 
 	// Use this for initialization
 	void Start () {
-		GameObject.Find ("scoreboard").GetComponent<Transform>().gameObject.SetActive (false);
+		de.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -30,7 +31,8 @@ public class Finish : MonoBehaviour {
         GameObject.Find("TextEarnMoney").GetComponent<Text>().enabled = true;
         GameObject.Find("fb").GetComponent<Image>().enabled = true;
         GameObject.Find("tw").GetComponent<Image>().enabled = true;
-		GameObject.Find ("scoreboard").GetComponent<Transform> ().gameObject.SetActive (true);
+		de.SetActive (true);
+		//GameObject.Find ("scoreboard").GetComponent<Transform>().gameObject.SetActive (true);
 
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 		string tim = Timer.Tiempo.ToString ("F2");
