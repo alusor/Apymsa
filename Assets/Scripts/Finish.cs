@@ -67,7 +67,7 @@ public class Finish : MonoBehaviour {
 
         }
 		int a = PlayerPrefs.GetInt ("maxScore");
-		if (a < score) {
+		if (a > score) {
 			PlayerPrefs.SetFloat("maxScore",score);
 			StartCoroutine(updateData());
 		}
@@ -102,7 +102,7 @@ public class Finish : MonoBehaviour {
 	private const string FACEBOOK_URL = "http://www.facebook.com/dialog/feed";
 
 	public void scoretable(){
-		Application.OpenURL ("http://tecnofuel/game/scoreboard.php");
+		Application.OpenURL ("http://tecnofuel.com/game/scoreboard.php");
 	}
 
 	public void FacebookShare ()
